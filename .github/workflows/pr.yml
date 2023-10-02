@@ -37,4 +37,26 @@ jobs:
         username: "alfredjynx"
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+    - name: Build and Push
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        file: ./DockerFile
+        push: true
+        tags: alfredjynx/partida-01-ci:${{ github.sha }}
+
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST_TEST }}
+        username: "ec2-user"
+        key: ${{ secrets.KEY_TEST }}
+        port: 22
+        script: |
+          docker stop partida-01-ci
+          docker rm --force partida-01-ci
+          docker image rm --force alfredjynx/partida-01-ci
+          docker run -d -p 8080:8080 --name partida-01-ci alfredjynx/partida-01-ci:${{ github.sha }}
+
+    
 
