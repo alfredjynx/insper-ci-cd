@@ -59,7 +59,7 @@ jobs:
           docker stop partida-01-ci
           docker rm --force partida-01-ci
           docker image rm --force alfredjynx/partida-01-ci
-          docker run -d -p 8080:8080 --name partida-01-ci alfredjynx/partida-01-ci:${{ github.sha }}
+          docker run -e MONGO_PASSWORD=${{ secrets.MONGO_PASSWORD }} -d -p 8080:8080 --name partida-01-ci alfredjynx/partida-01-ci:${{ github.sha }}
 
     
 
