@@ -61,7 +61,25 @@ public class TeamControllerTests {
     }
 
 
+    @Test
+    void test_fds1() throws Exception{
+        Assertions.asserEquals(1,1)
+    }
 
+    @Test
+    void test_fds2() throws Exception{
+        Assertions.asserEquals(1,1)
+    }
+
+    @Test
+    void test_fds3() throws Exception{
+        Assertions.asserEquals(1,1)
+    }
+        
+    @Test
+    void test_fds4() throws Exception{
+        Assertions.asserEquals(1,1)
+    }
 
 
 }
