@@ -48,22 +48,22 @@ public class TeamServiceTests {
 
     @Test
     void test_fds1() {
-        Assertions.asserEquals(1,1)
+        Assertions.asserEquals(1,1);
     }
 
     @Test
     void test_fds2() {
-        Assertions.asserEquals(1,1)
+        Assertions.asserEquals(1,1);
     }
 
     @Test
     void test_fds3() {
-        Assertions.asserEquals(1,1)
+        Assertions.asserEquals(1,1);
     }
         
     @Test
     void test_fds4() {
-        Assertions.asserEquals(1,1)
+        Assertions.asserEquals(1,1);
     }
 
 
