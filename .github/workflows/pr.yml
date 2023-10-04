@@ -66,6 +66,9 @@ jobs:
 
     - name: JaCoCo Report
       uses: Madrapps/jacoco-report@v1.6.1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+      
             
 
     
