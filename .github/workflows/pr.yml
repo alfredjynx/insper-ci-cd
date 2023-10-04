@@ -6,7 +6,6 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-
 name: Pull Request
 
 on:
@@ -62,6 +61,10 @@ jobs:
           docker rm --force partida-01-ci
           docker image rm --force alfredjynx/partida-01-ci
           docker run -e MONGO_PASSWORD=${{ secrets.MONGO_PASSWORD }} -d -p 8080:8080 --name partida-01-ci alfredjynx/partida-01-ci:${{ github.sha }}
+
+    - name: JaCoCo Report
+      uses: Madrapps/jacoco-report@v1.6.1
+            
 
     
 
