@@ -7,8 +7,6 @@ name: Deploy on Server
 on:
   push:
     branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
 
 
 
