@@ -1,6 +1,8 @@
 package com.insper.partida.equipe;
 
+import com.insper.partida.equipe.dto.SaveTeamDTO;
 import com.insper.partida.equipe.dto.TeamReturnDTO;
+import com.insper.partida.equipe.exception.TeamAlreadyExistsException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -47,23 +49,78 @@ public class TeamServiceTests {
     }
 
     @Test
+    void test_saveTeamNotEmpty() {
+
+        Team team = getTeam();
+
+        SaveTeamDTO saveTeam = new SaveTeamDTO();
+
+        saveTeam.setIdentifier(team.getIdentifier());
+        saveTeam.setName(team.getName());
+        saveTeam.setStadium(team.getStadium());
+
+        Mockito.when(teamRepository.save(Mockito.any())).thenReturn(team);
+
+        TeamReturnDTO resp = teamService.saveTeam(saveTeam);
+
+        Assertions.assertEquals(saveTeam.getIdentifier(), resp.getIdentifier());
+    }
+
+    @Test
+    void test_saveTeamNotValid() {
+
+        Team team = getTeam();
+
+        SaveTeamDTO saveTeam = new SaveTeamDTO();
+
+        saveTeam.setIdentifier(team.getIdentifier());
+        saveTeam.setName(team.getName());
+        saveTeam.setStadium(team.getStadium());
+
+        Mockito.when(teamRepository.existsByIdentifier(Mockito.any())).thenReturn(true);
+
+        Assertions.assertThrows(TeamAlreadyExistsException.class, () -> teamService.saveTeam(saveTeam));
+    }
+
+    @Test
+    void team_getByIdentifier() {
+
+        Team team = getTeam();
+
+        SaveTeamDTO saveTeam = new SaveTeamDTO();
+
+        saveTeam.setIdentifier(team.getIdentifier());
+        saveTeam.setName(team.getName());
+        saveTeam.setStadium(team.getStadium());
+
+        String identifier = "time-1";
+
+        Mockito.when(teamRepository.findByIdentifier(Mockito.any())).thenReturn(team);
+
+        Team resp = teamService.getTeam(identifier);
+
+        Assertions.assertEquals(saveTeam.getName(), resp.getName());
+    }
+
+
+    @Test
     void test_fds1() {
-        Assertions.asserEquals(1,1);
+        Assertions.assertEquals(1,1);
     }
 
     @Test
     void test_fds2() {
-        Assertions.asserEquals(1,1);
+        Assertions.assertEquals(1,1);
     }
 
     @Test
     void test_fds3() {
-        Assertions.asserEquals(1,1);
+        Assertions.assertEquals(1,1);
     }
         
     @Test
     void test_fds4() {
-        Assertions.asserEquals(1,1);
+        Assertions.assertEquals(1,1);
     }
 
 
