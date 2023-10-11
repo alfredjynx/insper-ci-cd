@@ -74,6 +74,9 @@ public class GameService {
         Game gameBD = gameRepository.findByIdentifier(identifier);
 
         // verificasr se o jogo existe
+        if(!gameRepository.existsByIdentifier(identifier)){
+            return null;
+        }
 
         gameBD.setScoreAway(editGameDTO.getScoreAway());
         gameBD.setScoreHome(editGameDTO.getScoreHome());
